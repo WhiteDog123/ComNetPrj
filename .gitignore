@@ -1,0 +1,8 @@
+#노드모듈무시
+node_modules*
+
+.vscode*
+
+helloWorld.js
+
+package-lock.json
