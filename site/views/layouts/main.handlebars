@@ -2,74 +2,44 @@
 <html>
 
 <head>
-{{! alt -> 사진이 뜨지 않았을때 대체할만한 설명!!}}
-{{! CSS style을 이용해서 가운데 정렬}}
-<style>
-    img
-    {
-        display:block;
-        margin-left:auto;
-        margin-right:auto;
-    }
-</style>
-<a href="/"><img src="/img/logo.png" alt="my logo"></a>
-
-
-    {{#if showTests}}
-    <link rel="stylesheet" href="/vendor/mocha.css">
-     {{/if}}
-     {{{_sections.head}}}
-    <style>
-        #banner {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        li a:hover {
-            background-color: #111;
-        }
-    </style>
-    <ul id="banner">
-        <li>
-            <a class="active" href="/">Home</a>
-        </li>
-        <li>
-            <a href="/about">About</a>
-        </li>
-        <li>
-            <a href="https://www.youtube.com/channel/UCsc9IDPcx0VNbIM07-hu9aw">WhiteDog Youtube</a>
-        </li>
-        <li>
-            <a href="/write-post">Write Post(Admin)</a>
-        </li>
-         <li>
-            <a href="/show-post">Show Post</a>
-        </li>
-    </ul>
-
+    <meta charset="uft-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width" , initial-scale=1>
+    <!-- Bootstrap-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    
+<div class="container">
+    <h1>White Dog<small> Games&Development</small></h1>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Dog's</a>
+        </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/about">About</a></li>
+          <li><a href="/show-post">Posts</a></li>
+          <li><a href="/write-post">Write</a></li>
+          <li><a href="https://www.youtube.com/channel/UCsc9IDPcx0VNbIM07-hu9aw">WhiteDog</br>
+               YouTube</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </nav>
+</div><!--컨테이너 끝-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/vendor/bootstrap.min.js"></script>
 </head>
 
 <body>
-    {{{body}}}
-    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
-    
-    {{#if showTests}}
-    
+    {{{body}}} {{#if showTests}}
+
     <div id="mocha"></div>
     <script src="/vendor/mocha.js"></script>
     <script src="/vendor/chai.js"></script>
@@ -77,14 +47,11 @@
         mocha.ui('tdd');
         var assert = chai.assert;
     </script>
-    <script src="/qa/tests-global.js"></script> 
-
-    {{#if pageTestScript}}
-    <script src="{{pageTestScript}}"></script> 
-    {{/if}}
-
-    <script>mocha.run();</script> 
-    {{/if}}
+    <script src="/qa/tests-global.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script src="{{pageTestScript}}"></script> {{/if}}
+ {{#if pageTestScript}}
+    <script>mocha.run();</script> {{/if}}
 </body>
 
 </html>

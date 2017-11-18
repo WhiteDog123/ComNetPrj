@@ -1,4 +1,6 @@
 #노드모듈무시
+ref*
+
 node_modules*
 
 .vscode*

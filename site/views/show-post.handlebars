@@ -1,43 +1,19 @@
 <h2>Show Post</h2>
 
 
-
-<style>
-    #datas
-    {
-    }
-    div{
-        background-color: #333;
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-    /*신박하네.. 이렇게 하나하나 아이디로도 할수있구나.*/
-    #txtTitle{
-        color : white;
-    text-align: center;
-    }
-    #txtContent{
-        color : white;
-        margin-left:35px;
-    }
-    
-    div + div{
-            margin-top : 3em;
-    }
-
-</style>
-
-<ul id = "datas">
-{{#each datas}}
-
-
-    <div>
-    <p id="txtTitle">
-    {{title}}
-    </p>    
-    <p id="txtContent">
-     {{content}}
-    </p>
-</div>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Title</th>
+            </tr>
+        </thead>
+    {{#each datas}}        
+        <tr>
+            <td>1</td>
+            <td> {{title}}</td>
+        </tr>
 {{/each}}
-</ul>
+    </table>
+</div>
