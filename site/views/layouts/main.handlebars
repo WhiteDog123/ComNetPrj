@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+{{! alt -> 사진이 뜨지 않았을때 대체할만한 설명!!}}
+{{! CSS style을 이용해서 가운데 정렬}}
+<style>
+    img
+    {
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+    }
+</style>
+<a href="/"><img src="/img/logo.png" alt="my logo"></a>
+
+
+    {{#if showTests}}
+    <link rel="stylesheet" href="/vendor/mocha.css">
+     {{/if}}
+     {{{_sections.head}}}
+    <style>
+        #banner {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+    </style>
+    <ul id="banner">
+        <li>
+            <a class="active" href="/">Home</a>
+        </li>
+        <li>
+            <a href="/about">About</a>
+        </li>
+        <li>
+            <a href="https://www.youtube.com/channel/UCsc9IDPcx0VNbIM07-hu9aw">WhiteDog Youtube</a>
+        </li>
+        <li>
+            <a href="/write-post">Write Post(Admin)</a>
+        </li>
+         <li>
+            <a href="/show-post">Show Post</a>
+        </li>
+    </ul>
+
+</head>
+
+<body>
+    {{{body}}}
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    
+    {{#if showTests}}
+    
+    <div id="mocha"></div>
+    <script src="/vendor/mocha.js"></script>
+    <script src="/vendor/chai.js"></script>
+    <script>
+        mocha.ui('tdd');
+        var assert = chai.assert;
+    </script>
+    <script src="/qa/tests-global.js"></script> 
+
+    {{#if pageTestScript}}
+    <script src="{{pageTestScript}}"></script> 
+    {{/if}}
+
+    <script>mocha.run();</script> 
+    {{/if}}
+</body>
+
+</html>
