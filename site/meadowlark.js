@@ -5,6 +5,11 @@
 // ./를 붙이면 거기서 찾지 않는다.
 var express = require('express');
 var mongoose = require('mongoose');
+var htmlToText = require('html-to-text');
+
+
+
+
 var opts = {
     server: {
         socketOptions: { keepAlive: 1 }
@@ -27,8 +32,7 @@ mongoose.connect(mongooseUrl);
 var app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(require('body-parser').urlencoded({ extended: true }));
-var router = require('./routes')(app, Book);
-var Book = require('./models/book');
+var Post = require('./models/post');
 //뷰를 렌더링 할때 사용할 기본 레이아웃
 //기본적으로 익스프레스는 views 에서 뷰를 찾고, views/layouts에서 레이아웃을 찾는다.
 var handlebars = require('express-handlebars').create({
@@ -79,8 +83,7 @@ app.get('/show-post', function (req, res) {
     //books 니까 복수겠네
 //var testing = require('./models/book');
 //tes
-
-    Book.find({},function (err, books) {
+    Post.find({},function (err, posts) {
         if (err)
         {
              return res.status(500).send({ error: 'database failure' });
@@ -88,7 +91,7 @@ app.get('/show-post', function (req, res) {
         //res.send(books);
         //res.json(books);
         res.render('show-post',{
-            datas:books });
+            datas:posts });
     });
 
    
@@ -98,11 +101,13 @@ app.get('/summernote-test',function(req,res){
 });
 app.post('/upload', function (req, res) {
     //        app.post('/handle-write-post', function(req,res){
-    var book = new Book();
-    book.title = req.body.post_title;
-    book.content = req.body.post_content;
+    var post = new Post();
+    post.title = req.body.post_title;
+  //  post.content = htmlToText.fromString('<h1>Hello World</h1>');
+  post.content = req.body.post_content;
+  //  post.content = htmlToText.fromString(req.body.post_content);
     //db에 data 저장
-    book.save(function (err) {
+    post.save(function (err) {
         if (err) {
             console.error(err);
             // res.json({result:0});
@@ -112,7 +117,7 @@ app.post('/upload', function (req, res) {
     });
     console.log('------------------------');
     console.log("Title : " + req.body.post_title);
-    console.log("Content : " + req.body.post_content);
+    console.log("Content : " + post.content);
     res.redirect(303, '/show-post');
 });
 

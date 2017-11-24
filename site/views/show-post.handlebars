@@ -1,6 +1,7 @@
 <h2>Show Post</h2>
-
-
+<script src="/vendor/string-to-html.js"></script>
+<script>import toHtml from'string-to-html';
+</script>
 <div class="container">
     <table class="table">
         <thead>
@@ -13,6 +14,7 @@
         <tr>
             <td>1</td>
             <td> {{title}}</td>
+            <div class = "content"></div>
         </tr>
 {{/each}}
     </table>
