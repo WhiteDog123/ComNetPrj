@@ -12,9 +12,9 @@
         </thead>
     {{#each datas}}        
         <tr>
-            <td>1</td>
+            <td>{{math @index "+" 1}}</td>
             <td> {{title}}</td>
-            <div class = "content"></div>
+            <td class = "content">{{{content}}}</td>
         </tr>
 {{/each}}
     </table>
