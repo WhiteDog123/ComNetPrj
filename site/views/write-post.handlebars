@@ -1,56 +1,54 @@
-<h2>Write Post</h2>
-{{! tr은 한 low를 의미}}
-{{! form에다가 CSS 적용}}
-<style>
-    form {
-        /*가운데 정렬*/
-        margin : 0 auto;
-        width : 1080px;
-        /*패딩에 아웃라인*/
-        padding:1em;
-        border: 1px solid #CCC;
-        border-radius : 1em;
-    }
-    /*위젯 사이 사이 공백*/
-    form div + div{
-            margin-top : 1em;
-    }
-    input,textarea{
-        font : 1em sans-serif;
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
-        width:800px;
-        -moz-box-sizing:  border-box;
-        box-sizing : border-box;
+<!-- include summernote css/js-->
+<!-- 애네 나중에 내폴더로 옮기자, 속도때매-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
-        border:1px solid #999;
-    }
+<!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.css">
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/theme/monokai.css">
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
 
-    input:focus, textarea:focus{
-        border-color:#000
-    }
-    textarea{
-        vertical-align: :top;
-        height:35em;
-        resize:vertical;
-    }
-.button{
-}
-button{
-}
-</style>
+<!-- css 스타일-->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/custom.css" rel="stylesheet">
+</html>
+
 
 {{! HTML 폼은 브라우저와 서버의 통신하는 거}}
-<form action = '/upload' method = "post">
-<div>
-  {{!<label for="title">Title:</label>}} 
-{{! 서버와 데이터를 주고 받을때, 데이터 이름 지정은 name으로 한다.}}
-    <input type="text" placeholder = "Title" id="title" name="post_title"/>
-</div>
-<div>
-    {{!<label for="post">Post:</label>}}
-    <textarea id="content" placeholder="Write Post Here" name ="post_content"></textarea>
-</div>
-<div class ="button">
-    <button type="submit">Upload Post</button>
-</div>
+<form action='/upload' method="post">
+  <div class="container">
+    <!-- 제목-->
+    <div class="form-group">
+      <div>
+        <input type="text" class="form-control input-lg" placeholder="Title" name="post_title" autocomplete=off>
+      </div>
+    </div>
+
+<!-- 썸머노트-->
+<!-- 글꼴이 하나만 떠오르는 문제 해결해야함.-->
+    <textarea id="summernote" name="post_content"> </textarea>
+    <script>
+      $('#summernote').summernote({
+        placeholder: 'Write Post here',
+        tabsize: 2,
+        height: 500,
+        fontNames: ['Roboto Condensed', 'Open Sans'],
+        codemirror: { theme: 'monokai' },
+      });
+    </script>
+   
+
+    <div class="button">
+      <button type="submit" class="btn btn-default pull-right">Upload Post</button>
+    </div>
+  </div>
 </form>

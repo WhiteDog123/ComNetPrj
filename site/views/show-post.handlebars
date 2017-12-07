@@ -1,21 +1,32 @@
-<h2>Show Post</h2>
-<script src="/vendor/string-to-html.js"></script>
-<script>import toHtml from'string-to-html';
-</script>
+<style>
+    .container {
+        padding-top: 30px;
+    }
+    .card{
+        margin-top: 30px;
+    }
+</style>
+
 <div class="container">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Number</th>
-                <th>Title</th>
-            </tr>
-        </thead>
-    {{#each datas}}        
-        <tr>
-            <td>{{math @index "+" 1}}</td>
-            <td> {{title}}</td>
-            <td class = "content">{{{content}}}</td>
-        </tr>
-{{/each}}
-    </table>
+    <div class="row">
+        <div class="col-md-9" role="main">
+            <div class="bs-docs-section">
+                <h2>Show Post</h2>
+                <table class="table">
+                    {{#each datas}}
+                    <tr>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2 class="card-title">{{title}}</h2>
+                                </div>
+                                <div class="card-body">
+                                    <p>{{{content}}}</p>
+                                </div>
+                            </div>
+                    </tr>
+                    {{/each}}
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

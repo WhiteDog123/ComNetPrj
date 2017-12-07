@@ -108,9 +108,6 @@ app.get('/show-post', function (req, res) {
 
    
 });
-app.get('/summernote-test',function(req,res){
-    res.render('summernote-test');
-});
 app.post('/upload', function (req, res) {
     //        app.post('/handle-write-post', function(req,res){
     var post = new Post();
