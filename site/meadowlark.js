@@ -35,7 +35,8 @@ app.use(require('body-parser').urlencoded({ extended: true }));
 var Post = require('./models/post');
 //뷰를 렌더링 할때 사용할 기본 레이아웃
 //기본적으로 익스프레스는 views 에서 뷰를 찾고, views/layouts에서 레이아웃을 찾는다.
-var handlebars = require('express-handlebars').create({
+var handlebars = require('express-handlebars').create({ defaultLayout: 'main' });
+/*.create({
     defaultLayout: 'main',
     helpers: {
         section: function (name, options) {
@@ -44,7 +45,7 @@ var handlebars = require('express-handlebars').create({
             return null;
         },
         // Function to do basic mathematical operation in handlebar
-        math: function(lvalue, operator, rvalue) {
+        math: function (lvalue, operator, rvalue) {
             lvalue = parseFloat(lvalue);
             rvalue = parseFloat(rvalue);
             return {
@@ -56,7 +57,7 @@ var handlebars = require('express-handlebars').create({
             }[operator];
         }
     }
-});
+});*/
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
@@ -91,30 +92,29 @@ app.get('/write-post', function (req, res) {
 });
 // GET ALL BOOKS
 app.get('/show-post', function (req, res) {
-    //데이터 조회 메소드
-    //books 니까 복수겠네
-//var testing = require('./models/book');
-//tes
-    Post.find({},function (err, posts) {
-        if (err)
-        {
-             return res.status(500).send({ error: 'database failure' });
+    Post.find({},null,{sort:{wroteDate : -1}}, 
+        function (err, posts) {
+        if (err) {
+            return res.status(500).send({ error: 'database failure' });
         }
-        //res.send(books);
-        //res.json(books);
-        res.render('show-post',{
-            datas:posts });
+        res.render('show-post',
+            {
+                datas: posts});
     });
-
-   
 });
 app.post('/upload', function (req, res) {
     //        app.post('/handle-write-post', function(req,res){
     var post = new Post();
+    var date = new Date();
+    post.wroteDate = date;
+    post.month = date.getMonth();
+    post.hour = date.getHours();
+    post.minute = date.getMinutes();
+    post.year = date.getUTCFullYear();
     post.title = req.body.post_title;
-  //  post.content = htmlToText.fromString('<h1>Hello World</h1>');
-  post.content = req.body.post_content;
-  //  post.content = htmlToText.fromString(req.body.post_content);
+    //  post.content = htmlToText.fromString('<h1>Hello World</h1>');
+    post.content = req.body.post_content;
+    //  post.content = htmlToText.fromString(req.body.post_content);
     //db에 data 저장
     post.save(function (err) {
         if (err) {
@@ -126,6 +126,7 @@ app.post('/upload', function (req, res) {
     });
     console.log('------------------------');
     console.log("Title : " + req.body.post_title);
+    console.log("Date : " + post.year);
     console.log("Content : " + post.content);
     res.redirect(303, '/show-post');
 });

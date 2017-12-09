@@ -9,6 +9,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
         crossorigin="anonymous">
     <link href="css/custom.css" rel="stylesheet">
+    <!-- include summernote css/js-->
+    <!-- 애네 나중에 내폴더로 옮기자, 속도때매-->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+    <!-- 비디오 속성 플러그인-->
+    <script src="vendor/summernote-video-attributes.js"></script>
+
+
     <div class="container">
         <h1>White Dog
             <small> Games&Development</small>
@@ -31,6 +39,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/write-post">Write</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.youtube.com/channel/UCsc9IDPcx0VNbIM07-hu9aw">
+                            WhiteDog's Youtube </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -46,7 +58,7 @@
 </head>
 
 <body>
-    {{{body}}} {{#if showTests}}
+    <br> {{{body}}} {{#if showTests}}
 
     <div id="mocha"></div>
     <script src="/vendor/mocha.js"></script>
@@ -59,6 +71,13 @@
     <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
     <script src="{{pageTestScript}}"></script> {{/if}} {{#if pageTestScript}}
     <script>mocha.run();</script> {{/if}}
+    <div class="container">
+        <footer class="footer" style="background-color: rgb(211, 211, 211)">
+            <a href="https://www.youtube.com/channel/UCsc9IDPcx0VNbIM07-hu9aw">
+                <img src="img/YouTube.png"> </a>
+            <p>&copy; WhiteDog 2017</p>
+        </footer>
+    </div>
 </body>
 
 </html>
