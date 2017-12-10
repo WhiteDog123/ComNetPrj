@@ -9,26 +9,52 @@
     #linktopost {
         color: white;
     }
+
+    .row{
+        margin-top : -30px;
+    }
+
+    .col-md-12 {
+        margin-top:30px;
+        border: 1px solid lightgray;
+        padding: 30px;
+        border-radius: 3px;
+    }
 </style>
 
 <div class="container">
-    <a href="/about" id = "linktopost">
-        <div class="jumbotron">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+     <a href="/about" id="linktopost">
+            <div class="jumbotron">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
                 <h3>Project Z World</h3>
-                <p>Project z world is a open world zombie survivor game template that can help you start your own survival like game quickly
-                    and easily.
+                <p>Project z world is a open world zombie survivor game template that can help you start your own survival like
+                    game quickly and easily.
                 </p>
+            </div>
+        </a>
+    <div class="row">
+        <!-- 점보트론-->
+        <div class="col-md-12" id="onesentence">
+            <p style="color:black">WhiteDog is a indie game developer. I designed and planned serveral games, even programmed myself. You are also
+                welcome to try my free games.
+                <br> Please visit my youtube channel for check out latest work on game.</p>
+        </div>
+        <div class="col-md-12">
+            <header>
+                <h2>{{title}}</h2>
+                <h6>{{year}}/{{month}}/{{hour}}/{{minute}}</h1>
+            </header>
+            <p>{{{content}}}</p>
+        </div>
     </div>
-    </a>
 </div>

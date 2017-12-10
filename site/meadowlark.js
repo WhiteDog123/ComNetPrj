@@ -78,7 +78,23 @@ app.use(function (req, res, next) {
 
 
 app.get('/', function (req, res) {
-    res.render('home');
+    Post.findOne({},null,{sort:{wroteDate:-1}},
+        function (err, data) {
+        if (err) {
+            return res.status(500).send({ error: 'database failure' });
+        }
+        console.log("Home" + data.title);
+        res.render('home',
+            {
+                title: data.title,
+                year: data.year,
+                month: data.month,
+                hour: data.hour,
+                minute: data.minute,
+                content: data.content,
+            });
+
+    });
 });
 app.get('/about', function (req, res) {
     //   var randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
@@ -92,15 +108,16 @@ app.get('/write-post', function (req, res) {
 });
 // GET ALL BOOKS
 app.get('/show-post', function (req, res) {
-    Post.find({},null,{sort:{wroteDate : -1}}, 
+    Post.find({}, null, { sort: { wroteDate: -1 } },
         function (err, posts) {
-        if (err) {
-            return res.status(500).send({ error: 'database failure' });
-        }
-        res.render('show-post',
-            {
-                datas: posts});
-    });
+            if (err) {
+                return res.status(500).send({ error: 'database failure' });
+            }
+            res.render('show-post',
+                {
+                    datas: posts
+                });
+        });
 });
 app.post('/upload', function (req, res) {
     //        app.post('/handle-write-post', function(req,res){
